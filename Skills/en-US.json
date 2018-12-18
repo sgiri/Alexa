@@ -1,0 +1,261 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "pet shop",
+            "intents": [
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "SearchIntent",
+                    "slots": [
+                        {
+                            "name": "searchitem",
+                            "type": "SEARCHITEMTYPE",
+                            "samples": [
+                                "pet food"
+                            ]
+                        },
+                        {
+                            "name": "category",
+                            "type": "CATEGORYTYPE",
+                            "samples": [
+                                "dry",
+                                "wet food",
+                                "I want dry food"
+                            ]
+                        },
+                        {
+                            "name": "brandname",
+                            "type": "BRANDTYPE",
+                            "samples": [
+                                "BestValue",
+                                "Iams",
+                                "Merrick"
+                            ]
+                        },
+                        {
+                            "name": "sortorder",
+                            "type": "SORTTYPE",
+                            "samples": [
+                                "rating",
+                                "price"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "search {category} {searchitem}",
+                        "search for {searchitem}",
+                        "search an {searchitem}",
+                        "search {searchitem}"
+                    ]
+                },
+                {
+                    "name": "NameIntent",
+                    "slots": [
+                        {
+                            "name": "name",
+                            "type": "AMAZON.US_FIRST_NAME"
+                        }
+                    ],
+                    "samples": [
+                        "{name}",
+                        "{name} is my name",
+                        "my name is {name}"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "SEARCHITEMTYPE",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "pet food"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "dog food"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "CATEGORYTYPE",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "Wholegrain"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Wet"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Dry"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "SORTTYPE",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "price"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "rating"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "BRANDTYPE",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "BestValue"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Iams"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Merrick"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "SearchIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "searchitem",
+                            "type": "SEARCHITEMTYPE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.303728186558.251054981704"
+                            }
+                        },
+                        {
+                            "name": "category",
+                            "type": "CATEGORYTYPE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1092774004395.122839112621"
+                            }
+                        },
+                        {
+                            "name": "sortorder",
+                            "type": "SORTTYPE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.558363658074.1346346286250"
+                            }
+                        },
+                        {
+                            "name": "brandname",
+                            "type": "BRANDTYPE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.558363658074.418445189899"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.1133209078588.907753869154",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what kind would you like?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what category would you like?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.303728186558.251054981704",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what do you want to search"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1092774004395.122839112621",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what kind of {searchitem} do you want?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "what kind do you want"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.558363658074.418445189899",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what brand would you like"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.558363658074.1346346286250",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "How do you want it sorted?"
+                    }
+                ]
+            }
+        ]
+    }
+}
