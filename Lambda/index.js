@@ -5,6 +5,8 @@
 /* eslint-disable  no-console */
 /* eslint-disable max-len */
 /* eslint-disable prefer-destructuring */
+/* eslint-disable prefer-destructuring */
+
 
 const Alexa = require('ask-sdk-core');
 const https = require('https');
