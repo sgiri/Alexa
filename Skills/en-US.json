@@ -17,7 +17,9 @@
                 },
                 {
                     "name": "AMAZON.StopIntent",
-                    "samples": []
+                    "samples": [
+                        "bye"
+                    ]
                 },
                 {
                     "name": "AMAZON.NavigateHomeIntent",
@@ -27,11 +29,8 @@
                     "name": "SearchIntent",
                     "slots": [
                         {
-                            "name": "searchitem",
-                            "type": "SEARCHITEMTYPE",
-                            "samples": [
-                                "pet food"
-                            ]
+                            "name": "pet",
+                            "type": "PETTYPE"
                         },
                         {
                             "name": "category",
@@ -40,6 +39,14 @@
                                 "dry",
                                 "wet food",
                                 "I want dry food"
+                            ]
+                        },
+                        {
+                            "name": "subcategory",
+                            "type": "FOODCATEGORYTYPE",
+                            "samples": [
+                                "{subcategory} {pet} {category}",
+                                "{subcategory}"
                             ]
                         },
                         {
@@ -58,13 +65,20 @@
                                 "rating",
                                 "price"
                             ]
+                        },
+                        {
+                            "name": "selectionitem",
+                            "type": "SelectionItemType"
                         }
                     ],
                     "samples": [
-                        "search {category} {searchitem}",
-                        "search for {searchitem}",
-                        "search an {searchitem}",
-                        "search {searchitem}"
+                        "{subcategory} {category}",
+                        "search {pet} {category}",
+                        "search {subcategory} {pet} {category}",
+                        " buy {pet} {category}",
+                        "buy  {subcategory} {pet} {category}",
+                        "buy {pet}",
+                        "look for  {pet} {category}"
                     ]
                 },
                 {
@@ -80,6 +94,93 @@
                         "{name} is my name",
                         "my name is {name}"
                     ]
+                },
+                {
+                    "name": "CheckOutIntent",
+                    "slots": [
+                        {
+                            "name": "CreditCardNumber",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "ExpirationDate",
+                            "type": "AMAZON.DATE"
+                        },
+                        {
+                            "name": "SecurityCode",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "city",
+                            "type": "AMAZON.US_CITY"
+                        },
+                        {
+                            "name": "state",
+                            "type": "AMAZON.US_CITY"
+                        },
+                        {
+                            "name": "zip",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "check out ",
+                        "order",
+                        "place order",
+                        "proceed to check out",
+                        "I want to checkout",
+                        "I want to check out",
+                        "checkout"
+                    ]
+                },
+                {
+                    "name": "ExplainFoodAllergyIntent",
+                    "slots": [],
+                    "samples": [
+                        "what is grain free",
+                        "tell me more on grain free",
+                        "grain free what is that",
+                        "explain grainfree",
+                        "what is grainfree "
+                    ]
+                },
+                {
+                    "name": "ConfirmationIntent",
+                    "slots": [
+                        {
+                            "name": "answer",
+                            "type": "ANSWERTYPE",
+                            "samples": [
+                                "no",
+                                "yes"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "{answer}"
+                    ]
+                },
+                {
+                    "name": "SpecialsIntent",
+                    "slots": [],
+                    "samples": [
+                        "specials",
+                        "offers",
+                        "Deals",
+                        "special offers"
+                    ]
+                },
+                {
+                    "name": "BlogIntent",
+                    "slots": [],
+                    "samples": [
+                        "read me news",
+                        "read me blog",
+                        "news article",
+                        "read me latest news article",
+                        "news",
+                        "blog"
+                    ]
                 }
             ],
             "types": [
@@ -88,12 +189,7 @@
                     "values": [
                         {
                             "name": {
-                                "value": "pet food"
-                            }
-                        },
-                        {
-                            "name": {
-                                "value": "dog food"
+                                "value": "item"
                             }
                         }
                     ]
@@ -103,17 +199,17 @@
                     "values": [
                         {
                             "name": {
-                                "value": "Wholegrain"
+                                "value": "pharmacy"
                             }
                         },
                         {
                             "name": {
-                                "value": "Wet"
+                                "value": "apparel"
                             }
                         },
                         {
                             "name": {
-                                "value": "Dry"
+                                "value": "food"
                             }
                         }
                     ]
@@ -152,6 +248,98 @@
                             }
                         }
                     ]
+                },
+                {
+                    "name": "DOGALLERGYTYPE",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "grain"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "SelectionItemType",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "two",
+                                "synonyms": [
+                                    "select 2",
+                                    "select two",
+                                    "option two",
+                                    "choose two"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "one",
+                                "synonyms": [
+                                    "select 1",
+                                    "select one",
+                                    "option one",
+                                    "choose one"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ANSWERTYPE",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "no"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "yes"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "PETTYPE",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "fish"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "cat"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "dog"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "FOODCATEGORYTYPE",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "grain free "
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "wet"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "dry"
+                            }
+                        }
+                    ]
                 }
             ]
         },
@@ -163,12 +351,12 @@
                     "prompts": {},
                     "slots": [
                         {
-                            "name": "searchitem",
-                            "type": "SEARCHITEMTYPE",
+                            "name": "pet",
+                            "type": "PETTYPE",
                             "confirmationRequired": false,
                             "elicitationRequired": true,
                             "prompts": {
-                                "elicitation": "Elicit.Slot.303728186558.251054981704"
+                                "elicitation": "Elicit.Slot.899699516340.479261277589"
                             }
                         },
                         {
@@ -178,6 +366,15 @@
                             "elicitationRequired": true,
                             "prompts": {
                                 "elicitation": "Elicit.Slot.1092774004395.122839112621"
+                            }
+                        },
+                        {
+                            "name": "subcategory",
+                            "type": "FOODCATEGORYTYPE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.899699516340.1068522607154"
                             }
                         },
                         {
@@ -196,6 +393,90 @@
                             "elicitationRequired": true,
                             "prompts": {
                                 "elicitation": "Elicit.Slot.558363658074.418445189899"
+                            }
+                        },
+                        {
+                            "name": "selectionitem",
+                            "type": "SelectionItemType",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1134387741298.1420603724410"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "CheckOutIntent",
+                    "confirmationRequired": true,
+                    "prompts": {
+                        "confirmation": "Confirm.Intent.1190484364810"
+                    },
+                    "slots": [
+                        {
+                            "name": "CreditCardNumber",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1190484364810.176645355302"
+                            }
+                        },
+                        {
+                            "name": "ExpirationDate",
+                            "type": "AMAZON.DATE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1190484364810.1285744853119"
+                            }
+                        },
+                        {
+                            "name": "SecurityCode",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1190484364810.269171003196"
+                            }
+                        },
+                        {
+                            "name": "city",
+                            "type": "AMAZON.US_CITY",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        },
+                        {
+                            "name": "state",
+                            "type": "AMAZON.US_CITY",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        },
+                        {
+                            "name": "zip",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1106860472547.213178652335"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ConfirmationIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "answer",
+                            "type": "ANSWERTYPE",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1001052762811.268385968112"
                             }
                         }
                     ]
@@ -230,10 +511,6 @@
                 "variations": [
                     {
                         "type": "PlainText",
-                        "value": "what kind of {searchitem} do you want?"
-                    },
-                    {
-                        "type": "PlainText",
                         "value": "what kind do you want"
                     }
                 ]
@@ -253,6 +530,123 @@
                     {
                         "type": "PlainText",
                         "value": "How do you want it sorted?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Intent.1190484364810",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "May I place this order?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1190484364810.176645355302",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "What is the credit card number?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1190484364810.1285744853119",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what is the expiration date?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1190484364810.269171003196",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what is the security code?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1190484364810.1403887356416",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what is the city name?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1190484364810.430236851440",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what is the state name?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1106860472547.625884210917",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what city do you live in?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1106860472547.1076498554236",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what state do you live in ?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1106860472547.213178652335",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what is your zip code ?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1134387741298.1420603724410",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what items do you want to add to cart ?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1001052762811.268385968112",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Do you want to confirm"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.899699516340.479261277589",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what type of pet are you looking for?"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.899699516340.1068522607154",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what type of food are you looking for?"
                     }
                 ]
             }
